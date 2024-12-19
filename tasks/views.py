@@ -7,10 +7,10 @@ from users.models import TaskUser
 
 
 @api_view(['GET'])
-@permission_classes([IsAuthenticated])
+# @permission_classes([IsAuthenticated])
 def get_all_tasks(request):
     print("USER IS:",request.user)
-    tasks = Task.objects.filter(user=request.user) # Show only User tasks 
+    tasks = Task.objects.filter(user=1) # Show only User tasks 
     serializer = TaskSerializer(tasks, many=True)
     return Response(serializer.data)
 

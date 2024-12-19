@@ -1,21 +1,14 @@
 # Lesson48_Login_Frontend
 
-29.10.2024-00:51
+29.10.2024-00:57
 
 ## Commands schema on VScode:
-python -m venv venv
-source venv/Scripts/activate
-pip install -r requirements.txt
-python.exe -m pip install --upgrade pip
-python manage.py makemigrations tasks
-py manage.py migrate
-py manage.py createsuperuser
-
-ChatGPT:
-1. THIS IS THE VIEWS.PY PLEASE MAKE A FRONT END THAT WILL SHOW THE TASKS
-2. ADD A LOGIN FORM + CALL TO LOGIN ENDPOINT USING AXIOS ASYNC
-3. SAVE TOKEN RECEIVED TN LOCALSTORAGE
-4. CALL GET TASKS USING TOKEN AND AXIOS ASYNC
+Thunder Client:
+GET
+http://127.0.0.1:8000/
+Auth
+Bearer Token
+Paste the token given in login in http://127.0.0.1:8000/login/
 
 ## Virtual Environment
 python -m venv venv
