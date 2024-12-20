@@ -1,10 +1,16 @@
 # Lesson48_Login_Frontend
 
-29.10.2024-03:27
+29.10.2024-04:00
 
 ## Commands schema on VScode:
 In ChatGPT:
-Please add in get tasks the auth token
+If i am in task.html and token is invalid - can i forward to login?
+
+i have a refresh endpoint for refreshing the jwt token. please add a code to use the refresh token
+
+http://127.0.0.1:5500/front/login.html
+http://127.0.0.1:5500/front/index.html
+http://localhost:8000/refresh/
 
 ## Virtual Environment
 python -m venv venv

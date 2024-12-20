@@ -32,9 +32,12 @@
                 const response = await axios.post('http://127.0.0.1:8000/login/', { username, password }); // Update with your login endpoint
                 
                 const authToken = response.data.access; // Assuming the token is returned in the response
+                const refreshToken = response.data.refresh;
                 console.log(authToken) // Printing refresh token
                 // Store the token in local storage or session storage
-                localStorage.setItem('authToken', authToken);
+                localStorage.setItem('authToken', authToken); //Saving token to local storage
+                localStorage.setItem('refreshToken', refreshToken); //Saving refresh token to local storage
+
                 document.getElementById('login-message').innerHTML = '<p class="text-success">Login successful!</p>';
                 // Optionally redirect to task list page
                 window.location.href = 'index.html'; // Adjust as necessary
