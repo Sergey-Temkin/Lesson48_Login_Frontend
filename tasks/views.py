@@ -7,10 +7,11 @@ from users.models import TaskUser
 
 
 @api_view(['GET'])
-# @permission_classes([IsAuthenticated])
+# @permission_classes([IsAuthenticated]) # Authentication for this end point(If logged in)
 def get_all_tasks(request):
-    print("USER IS:",request.user)
-    tasks = Task.objects.filter(user=1) # Show only User tasks 
+    print("logged in user is:",request.user) # request.user = logged in user
+    # tasks = Task.objects.filter(user=request.user) # Show only User tasks 
+    tasks = Task.objects.all()
     serializer = TaskSerializer(tasks, many=True)
     return Response(serializer.data)
 

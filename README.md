@@ -1,14 +1,45 @@
 # Lesson48_Login_Frontend
 
-29.10.2024-00:57
+29.10.2024-01:58
 
 ## Commands schema on VScode:
-Thunder Client:
-GET
-http://127.0.0.1:8000/
-Auth
-Bearer Token
-Paste the token given in login in http://127.0.0.1:8000/login/
+pip install django-cors-headers
+pip freeze > requirements.txt
+
+In ChatGPT:
+I will give you views.py and models.py in my backend django rest framework.
+please add a simple html js screen that will show a task list. no login needed.
+use bootstrap style and axios async await.
+views.py:
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated, IsAdminUser
+from .models import Task
+from .serializers import TaskSerializer
+from users.models import TaskUser
+
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated]) # Authentication for this end point(If logged in)
+def get_all_tasks(request):
+    print("logged in user is:",request.user) # request.user = logged in user
+    tasks = Task.objects.filter(user=request.user) # Show only User tasks 
+    serializer = TaskSerializer(tasks, many=True)
+    return Response(serializer.data)
+
+models.py:
+from django.conf import settings
+from django.db import models
+from users.models import TaskUser
+
+class Task(models.Model):
+    name = models.CharField(max_length=255)                   # Task name
+    deadline = models.DateField()                             # Task deadline date
+    done = models.BooleanField(default=False)                 # Done status (True/False)
+    user = models.ForeignKey(TaskUser, on_delete=models.CASCADE)  # Link to the User model
+    
+    def __str__(self):
+        return self.name
 
 ## Virtual Environment
 python -m venv venv
