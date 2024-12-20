@@ -15,7 +15,13 @@
     <script>
         async function fetchTasks() {
             try {
-                const response = await axios.get('http://127.0.0.1:8000/'); // Update the URL to your endpoint
+                let authToken = localStorage.getItem('authToken') // Get the token from local storage
+                const response = await axios.get('http://127.0.0.1:8000/',
+                    {
+                    headers: {
+                        'Authorization': `Bearer ${authToken}` // Include the token in headers
+                    }
+                    }); 
                 const tasks = response.data;
                 const taskListDiv = document.getElementById('task-list');
                 taskListDiv.innerHTML = ''; // Clear existing content

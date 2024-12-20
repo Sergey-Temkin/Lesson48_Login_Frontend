@@ -1,11 +1,10 @@
 # Lesson48_Login_Frontend
 
-29.10.2024-02:43
+29.10.2024-03:27
 
 ## Commands schema on VScode:
 In ChatGPT:
-Add a simple login form + call to login endpoint using axios async
-please write a separate login.html file
+Please add in get tasks the auth token
 
 ## Virtual Environment
 python -m venv venv
