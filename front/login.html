@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Login</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Login</h1>
+        <form id="form-login" onsubmit="handleLogin(event)">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" class="form-control" id="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+        <div id="login-message" class="mt-2"></div>
+    </div>
+    <script>
+        async function handleLogin(event) {
+            event.preventDefault(); // Prevent form submission
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            try {
+                const response = await axios.post('http://127.0.0.1:8000/login/', { username, password }); // Update with your login endpoint
+                
+                const authToken = response.data.access; // Assuming the token is returned in the response
+                console.log(authToken) // Printing refresh token
+                // Store the token in local storage or session storage
+                localStorage.setItem('authToken', authToken);
+                document.getElementById('login-message').innerHTML = '<p class="text-success">Login successful!</p>';
+                // Optionally redirect to task list page
+                window.location.href = 'index.html'; // Adjust as necessary
+            } catch (error) {
+                console.error('Login error:', error);
+                document.getElementById('login-message').innerHTML = '<p class="text-danger">Login failed. Please check your credentials.</p>';
+            }
+        }
+    </script>
+</body>
+</html>

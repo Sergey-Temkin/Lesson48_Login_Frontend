@@ -7,7 +7,7 @@ from users.models import TaskUser
 
 
 @api_view(['GET'])
-# @permission_classes([IsAuthenticated]) # Authentication for this end point(If logged in)
+@permission_classes([IsAuthenticated]) # Authentication for this end point(If logged in)
 def get_all_tasks(request):
     print("logged in user is:",request.user) # request.user = logged in user
     # tasks = Task.objects.filter(user=request.user) # Show only User tasks 
